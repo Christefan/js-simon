@@ -5,7 +5,12 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 */
 alert('Iniziamo');
 rdmArrays();
-setTimeout(removeRdmArrays, 3000);
+
+
+
+
+
+
 /*
  [] = Visualizzare in pagina 5 numeri casuali.
 
@@ -16,14 +21,15 @@ setTimeout(removeRdmArrays, 3000);
 
 */
 function rdmArrays(){
-    const arrRdm = [];
     const stampa = 0;
+    const arrRdm = [];
     for(let i=0; i < 5; i++){
         arrRdm[i] = rdmNumber();
         console.log(arrRdm[i]);
         document.getElementById('random').innerHTML = `${arrRdm}`;
     }
     alert('Inizio timer 30 secondi');
+    setTimeout(removeRdmArrays, 3000,arrRdm);
 }
 function rdmNumber(){
  return Math.floor(Math.random() * 100) + 1;
@@ -34,18 +40,31 @@ function rdmNumber(){
  [] = Da lì parte un timer di 30 secondi
 
     Creiamo un funzione dove invoca una funzione dopo tot secondi 
-        Dopo tot secondi l'utente inserira tramite prompt i numeri visaliazzati nello step 1
+        Dopo tot secondi l'utente inserira' tramite prompt i numeri visaliazzati nello step 1
         
         Abbiamo bisogno di una array per salvare i dati inseriti
         O
         Bisogna realizzare un confronto tra il valore inserito e l'array dei 5 numeri 
 */
 
-function removeRdmArrays(){
+function removeRdmArrays(arrRdmN){
+    alert('Tempo scaduto')
     document.getElementById('random').innerHTML = ``;
+    setTimeout(userPrompt,100,arrRdmN);
 }
 
 
-function userPrompt(){
-
+function userPrompt(arrRdmNumber){
+    let k=0;
+    const arrNumber=[];
+    for(let i=0;i<arrRdmNumber.length;i++){
+        const userprompt = parseInt(prompt('Valore nella posizione',i++));
+        if(arrRdmNumber.includes(userprompt)){
+            k++;
+            arrNumber[k]=userprompt;
+            console.log('Valore trovato',userprompt)
+            // document.getElementById('random').innerHTML += `${userprompt}`;
+        }
+    }
+     document.getElementById('random').innerHTML =`Risultato valori trovati sono (${k}): ${arrNumber}`;
 }
