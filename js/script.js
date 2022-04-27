@@ -58,7 +58,7 @@ function userPrompt(arrRdmNumber){
     let k=0;
     const arrNumber=[];
     for(let i=0;i<arrRdmNumber.length;i++){
-        const userprompt = parseInt(prompt('Valore nella posizione',i++));
+        const userprompt = parseInt(prompt('Inserisci Valore',i));
         if(arrRdmNumber.includes(userprompt)){
             k++;
             arrNumber[k]=userprompt;
@@ -66,5 +66,12 @@ function userPrompt(arrRdmNumber){
             // document.getElementById('random').innerHTML += `${userprompt}`;
         }
     }
+    if(k >= 1 && k!=5){
      document.getElementById('random').innerHTML =`Risultato valori trovati sono (${k}): ${arrNumber}`;
+    }else if(k===5){
+        alert('Hai trovato tutti i valori :D')
+        document.getElementById('random').innerHTML =`Risultato valori trovati sono (${k}): ${arrNumber}`;
+    }else{
+        alert('UA NON HAI TROVATO NULLA');
+    }
 }
